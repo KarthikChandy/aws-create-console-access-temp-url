@@ -1,0 +1,28 @@
+aws-create-console-access-temp-url
+==================================
+
+Allows federated users to get access to AWS management console.
+Taken as is from : 
+http://docs.aws.amazon.com/STS/latest/UsingSTS/STSMgmtConsole-manualURL.html#STSConsoleLink_programPython
+
+The role should have appropriate permissions and the following relationship trust policy:
+*The mfa condition is optional
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<YOUR_ACCOUNT_ID>:root"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "Null": {
+          "aws:MultiFactorAuthAge": false
+        }
+      }
+    }
+  ]
+}
