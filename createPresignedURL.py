@@ -36,7 +36,8 @@ sts_connection = STSConnection()
 
 assumed_role_object = sts_connection.assume_role(
     role_arn=roleArn,
-    role_session_name="AssumeRoleSession"
+    role_session_name="ConsoleSSOSession",
+    duration_seconds=1800
 )
 
 # Step 3: Format resulting temporary credentials into JSON
